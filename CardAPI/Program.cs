@@ -1,4 +1,7 @@
 
+using CardAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace CardAPI
 {
     public class Program
@@ -13,6 +16,9 @@ namespace CardAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<CardsDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("CardsDbConnectionString")));
 
             var app = builder.Build();
 
